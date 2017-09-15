@@ -5,13 +5,13 @@
 #include <string>
 #include <memory>
 
-class Pessoa{
+class Person{
 	private:
 		std::string _name;
 		unsigned _day, _month, _year;
 	
 	public:	
-		Pessoa (const std::string & _name, unsigned _day, unsigned _month, unsigned _year): 
+		Person (const std::string & _name, unsigned _day, unsigned _month, unsigned _year): 
 		_name(_name), _day(_day), _month(_month), _year(_year) {	}
 		
 		const std::string &getName(void) {	return _name;	}	
@@ -21,12 +21,12 @@ class Pessoa{
 
 };
 
-std::unique_ptr<Pessoa> create_human(void){
+std::unique_ptr<Person> create_human(void){
 	std::string name;
 	unsigned day, month, year;
 	std::cin>>name;
 	std::cin>>day>>month>>year;
-	std::unique_ptr<Pessoa> new_human(new Pessoa(name, day, month, year));
+	std::unique_ptr<Person> new_human(new Person(name, day, month, year));
 	return new_human;
 }
 

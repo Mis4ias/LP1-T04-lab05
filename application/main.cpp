@@ -4,13 +4,13 @@
 
 
 const size_t n = 2;
-void _input(std::vector<Pessoa> &p){
+void _input(std::vector<Person> &p){
 	for(size_t t=0;t<n;t++){
-		std::unique_ptr<Pessoa> individual = create_human();
+		std::unique_ptr<Person> individual = create_human();
 		p.push_back(*individual);
 	}
 }
-void _print(std::vector<Pessoa> &p){
+void _print(std::vector<Person> &p){
 	for(size_t k=0;k<n;k++){
 		std::cout<<p[k].getName()<<" -- ";
 		std::cout<<p[k].getDay()<<"/";
@@ -20,7 +20,7 @@ void _print(std::vector<Pessoa> &p){
 }
 
 int main(){
-	std::vector<Pessoa> people;
+	std::vector<Person> people;
 	people.reserve(n);
 	_input(people);
 	_print(people);	
