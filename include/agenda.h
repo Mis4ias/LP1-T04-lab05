@@ -2,6 +2,7 @@
 #define __AGENDA_H__
 
 #include "contacts.h"
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -27,6 +28,8 @@ class Agenda {
 		void del_contact(size_t pos){
 			this->_contact.erase(this->_contact.begin() + pos-1);
 		}
+		
+		
 		friend std::ostream& operator <<(std::ostream& out, Agenda& right_object){
 			for(size_t k=0;k<max_size;k++){
 				std::cout<<"<Contato>"<<std::endl;
@@ -37,6 +40,26 @@ class Agenda {
 			}
 		return out;
 		}
+		void save_file(){
+			std::fstream stream;
+			std::string path = "./";
+			std::string file_name;
+			
+			std::cout<<"Nome do arquivo: ";
+			std::getline(std::cin, file_name);
+			path += file_name+".dat";
+
+			stream.open(path, std::fstream::out);
+			for(size_t k=0; k < max_size; k++){
+				stream<<"<Contato>"<<std::endl;
+				stream<<this->_contact[k].getName()<<" -- ";
+				stream<<this->_contact[k].getDay()<<"/";
+				stream<<this->_contact[k].getMonth()<<"/";
+				stream<<this->_contact[k].getYear()<<std::endl;
+			}
+			stream.close();
+		}
+		
 
 };
 #endif //__AGENDA_H__

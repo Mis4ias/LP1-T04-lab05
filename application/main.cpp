@@ -10,6 +10,6 @@ int main(){
 	std::cout<<"====* Insira os dados dos seus contatos *===="<<std::endl;
 	data.set_contacts();
 	std::cout<<data;
-
+	data.save_file();
 return EXIT_SUCCESS;
 }
