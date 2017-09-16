@@ -20,9 +20,13 @@ class Agenda {
 		void set_contacts(){
 			for(size_t t=0;t<max_size;t++){
 				std::unique_ptr<Contact> individual = create_contact();
-				this->_contact.push_back(*individual);
+				//this->_contact.push_back(*individual);
+				this->_contact[t] = *individual;
 			}
 		}	
+		void del_contact(size_t pos){
+			this->_contact.erase(this->_contact.begin() + pos-1);
+		}
 		friend std::ostream& operator <<(std::ostream& out, Agenda& right_object){
 			for(size_t k=0;k<max_size;k++){
 				std::cout<<"<Contato>"<<std::endl;
