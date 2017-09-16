@@ -1,17 +1,17 @@
-#ifndef __PERSONAL_DATA_H__
-#define __PERSONAL_DATA_H__
+#ifndef __CONTACTS_H__
+#define __CONTACTS_H__
 
 #include <iostream>
 #include <string>
 #include <memory>
 
-class Person{
+class Contact{
 	private:
 		std::string _name;
 		unsigned _day, _month, _year;
 	
 	public:	
-		Person (const std::string & _name, unsigned _day, unsigned _month, unsigned _year): 
+		Contact (const std::string & _name, unsigned _day, unsigned _month, unsigned _year): 
 		_name(_name), _day(_day), _month(_month), _year(_year) {	}
 		
 		const std::string &getName(void) {	return _name;	}	
@@ -21,13 +21,13 @@ class Person{
 
 };
 
-std::unique_ptr<Person> create_human(void){
+std::unique_ptr<Contact> create_contact(void){
 	std::string name;
 	unsigned day, month, year;
 	std::cin>>name;
 	std::cin>>day>>month>>year;
-	std::unique_ptr<Person> new_human(new Person(name, day, month, year));
-	return new_human;
+	std::unique_ptr<Contact> new_contact(new Contact(name, day, month, year));
+	return new_contact;
 }
 
-#endif // __PERSONAL_DATA_H__
+#endif // __CONTACTS_H__
