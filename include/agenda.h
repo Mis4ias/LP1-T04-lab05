@@ -25,6 +25,7 @@ class Agenda {
 		}	
 		friend std::ostream& operator <<(std::ostream& out, Agenda& right_object){
 			for(size_t k=0;k<max_size;k++){
+				std::cout<<"<Contato>"<<std::endl;
 				out<<right_object._contact[k].getName()<<" -- ";
 				out<<right_object._contact[k].getDay()<<"/";
 				out<<right_object._contact[k].getMonth()<<"/";

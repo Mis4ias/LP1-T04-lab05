@@ -24,8 +24,12 @@ class Contact{
 std::unique_ptr<Contact> create_contact(void){
 	std::string name;
 	unsigned day, month, year;
+	std::cout<<"Nome: ";
 	std::cin>>name;
+	std::cin.clear();
+	std::cout<<"Dia Mes Ano: ";
 	std::cin>>day>>month>>year;
+	std::cin.clear();
 	std::unique_ptr<Contact> new_contact(new Contact(name, day, month, year));
 	return new_contact;
 }
