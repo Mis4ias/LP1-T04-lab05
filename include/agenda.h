@@ -82,6 +82,7 @@ class Agenda {
 			std::cout<<std::endl;	
 			for(size_t i=0; i<arg.size();i++){
 				std::cout<<i<<"   "<<arg[i]<<std::endl;
+			
 			}
 		}
 		
