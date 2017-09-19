@@ -13,7 +13,8 @@ class Contact{
 	public:	
 		Contact (const std::string & _name, unsigned _day, unsigned _month, unsigned _year): 
 		_name(_name), _day(_day), _month(_month), _year(_year) {	}
-		
+		void setName(std::string name)  {	_name = name;	}	
+		void setDay(unsigned day)       {	_day = day;     } 
 		const std::string &getName(void) {	return _name;	}	
 		const unsigned &getDay(void)     {	return _day;	}
 		const unsigned &getMonth(void)   {	return _month;	}

@@ -7,7 +7,7 @@ TESTDIR = test
 
 CC = g++
 
-CFLAGS = -O3  -Wall -ansi -pedantic -std=c++11 -I $(INCLUDEDIR)
+CFLAGS = -g -O0  -Wall -ansi -pedantic -std=c++11 -I $(INCLUDEDIR)
 
 LDFLAGS =
 

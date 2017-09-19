@@ -7,9 +7,10 @@
 int main(){
 	
 	Agenda data;
-	std::cout<<"====* Insira os dados dos seus contatos *===="<<std::endl;
-	data.set_contacts();
+	data.read_file();	
+//	std::cout<<"====* Insira os dados dos seus contatos *===="<<std::endl;
+//	data.set_contacts();
 	std::cout<<data;
-	data.save_file();
+//	data.save_file();
 return EXIT_SUCCESS;
 }
