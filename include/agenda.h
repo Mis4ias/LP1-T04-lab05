@@ -9,6 +9,19 @@
 #include <locale>
 const size_t max_size = 2;
 
+size_t break_p(std::string path){
+	size_t bp = 0;
+	std::fstream file;
+	std::string buffer;
+	file.open(path, std::fstream::in);
+	std::getline(file, buffer, '\n');
+	file.close();
+	for(std::string::iterator ik = buffer.begin(); ik != buffer.end(); ik++){
+		if(*ik == ';') bp += 1;
+	}
+return bp;
+}
+
 class Agenda {
 	private:
 		std::vector<Contact> _contact;
@@ -44,40 +57,32 @@ class Agenda {
 			std::fstream stream;
 			std::string path = "./";
 			std::string file_name;
-			std::string buffer, sub;
-			unsigned kk = 0;	
+			std::string buffer;
+			
 			std::cout<<"Nome do arquivo: ";
 			std::getline(std::cin, file_name);
 			path += file_name+".dat";
-			
+		
+			std::vector<std::string> arg;	
 			stream.open(path, std::fstream::in);
 			if(stream.is_open()){
-				for(size_t k=0; k< max_size; k++){
-					while(!stream.eof()){
-						std::getline(stream, buffer, '\n');
-						if(buffer.compare("<Contato>") != 0){ 
+				while(!stream.eof()){
+					std::getline(stream, buffer, '\n');
+					std::string sub;
+					for(std::string::iterator it = buffer.begin(); it != buffer.end(); it++){
+						if(*it == ';' || *it == '\n') {
+							arg.push_back(sub); 
 							sub.clear();
-							for(std::string::iterator ik = buffer.begin(); ik != buffer.end(); ik++){
-								if((*ik) == ' ' || (*ik) == ';'){
-									std::locale loc;
-									if(isdigit(sub[0], loc)){
-										if( kk == 0){
-											this->_contact[k].setDay(std::stoul(sub));
-											sub.clear();
-											kk++;
-										}
-									}
-									else this->_contact[k].setName(sub);
-									sub.clear();	
-								}
-								else sub += *ik;	
-							}	
-						//std::cout<<"."<<sub<<std::endl;
-						}
+						}else sub+= *it;
 					}
 				}
+			
 			}
 			stream.close();
+			std::cout<<std::endl;	
+			for(size_t i=0; i<arg.size();i++){
+				std::cout<<i<<"   "<<arg[i]<<std::endl;
+			}
 		}
 		
 		
@@ -92,11 +97,10 @@ class Agenda {
 
 			stream.open(path, std::fstream::out);
 			for(size_t k=0; k < max_size; k++){
-				stream<<"<Contato>"<<std::endl;
-				stream<<this->_contact[k].getName()<<" ";
+				stream<<this->_contact[k].getName()<<";";
 				stream<<this->_contact[k].getDay();
 				stream<<";"<<this->_contact[k].getMonth();
-				stream<<";"<<this->_contact[k].getYear();
+				stream<<";"<<this->_contact[k].getYear()<<";endl;";
 				stream<<std::endl;
 			}
 			stream.close();
