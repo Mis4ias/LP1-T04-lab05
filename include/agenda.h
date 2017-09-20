@@ -9,18 +9,6 @@
 #include <locale>
 const size_t max_size = 2;
 
-size_t break_p(std::string path){
-	size_t bp = 0;
-	std::fstream file;
-	std::string buffer;
-	file.open(path, std::fstream::in);
-	std::getline(file, buffer, '\n');
-	file.close();
-	for(std::string::iterator ik = buffer.begin(); ik != buffer.end(); ik++){
-		if(*ik == ';') bp += 1;
-	}
-return bp;
-}
 
 class Agenda {
 	private:
@@ -38,7 +26,7 @@ class Agenda {
 			}
 		}	
 		void del_contact(size_t pos){
-			this->_contact.erase(this->_contact.begin() + pos-1);
+			this->_contact.erase(this->_contact.begin() + pos);
 		}
 		
 		
@@ -53,7 +41,7 @@ class Agenda {
 		return out;
 		}
 		
-		void read_file(){
+	/*	void read_file(){
 			std::fstream stream;
 			std::string path = "./";
 			std::string file_name;
@@ -63,28 +51,18 @@ class Agenda {
 			std::getline(std::cin, file_name);
 			path += file_name+".dat";
 		
-			std::vector<std::string> arg;	
 			stream.open(path, std::fstream::in);
 			if(stream.is_open()){
-				while(!stream.eof()){
-					std::getline(stream, buffer, '\n');
-					std::string sub;
-					for(std::string::iterator it = buffer.begin(); it != buffer.end(); it++){
-						if(*it == ';' || *it == '\n') {
-							arg.push_back(sub); 
-							sub.clear();
-						}else sub+= *it;
-					}
+				for(size_t k=0; k < max_size; k++){
+					std::getline(stream, buffer);
+					sub = break_(buffer);
+					this->_contact[k].setName(buffer);			
 				}
 			
-			}
+			}		
 			stream.close();
-			std::cout<<std::endl;	
-			for(size_t i=0; i<arg.size();i++){
-				std::cout<<i<<"   "<<arg[i]<<std::endl;
 			
-			}
-		}
+		}*/
 		
 		
 		void save_file(){

@@ -4,7 +4,8 @@
 #include <iostream>
 #include <string>
 #include <memory>
-
+#include <ctype.h>
+#include <fstream>
 class Contact{
 	private:
 		std::string _name;
